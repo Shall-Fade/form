@@ -98,3 +98,14 @@ select {
 .btn:active {
     background-color: #1c6d83;
 }
+
+.captcha-block {
+    display: flex;
+    flex-direction: column;
+    padding-top: 15px;
+}
+
+.message {
+    text-align: center;
+    padding-top: 15px;
+}
