@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+function message(){ //Функция вывода сообщений о результате запроса
+    if(isset($_SESSION['success'])){
+        echo '<p style="color:green;">'.$_SESSION['success'].'</p>';
+        unset($_SESSION['success']);
+    }
+    if(isset($_SESSION['error'])){
+        echo '<p style="color:red;">'.$_SESSION['error'].'</p>';
+        unset($_SESSION['error']);
+    }
+}
+?>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -9,7 +23,7 @@
     <title>Form</title>
 </head>
 <body>
-    <div class="container">
+<div class="container">
         <h1 class="title">Форма регистрации</h1>
         <form action="check.php" method="post" class="form">
             <label for="name">Имя</label>
@@ -31,9 +45,19 @@
             </select>
             <label for="comment">Комментарий</label>
             <textarea name="comment" id="comment" cols="30" rows="10" minlength="0" maxlength="150" placeholder="Введите свой комментарий"></textarea>
+            <div class="captcha-block">
+                <label for="captcha">Проверочный код</label>
+                <div class="captcha">
+                    <img src="captcha.php" alt="Captcha">
+                </div>
+                <input type="text" class="form-input" name="captcha" id="captcha" autocomplete="off" placeholder="Введите проверочный код" required>
+            </div>
             <input class="btn" type="submit">
         </form>
-    </div>
+        <div class="message">
+            <?php  message(); //Вызов функции вывода сообщений?>
+        </div>
+</div>
 <!--    <script src="js/main.js"></script>-->
 </body>
 </html>
